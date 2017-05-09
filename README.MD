@@ -23,65 +23,75 @@ yarn add chainpoint-parse
 
 ### Node.js
 
-#### `objectToBinary`
+#### `parseObject`
 
-This function converts a Chainpoint proof in JSON String or Javascript Object form to a Buffer containing the standard binary form. The incoming Object will be validated against
-the formal [Chainpoint Proof JSON Schema](https://github.com/chainpoint/chainpoint-proof-json-schema).
+This function parses a [Chainpoint v3 proof](https://chainpoint.org/) in Javascript Object form.
 
 ```js
-const cpb = require('chainpoint-binary')
+const chainpointParse = require('chainpoint-parse')
 
-// Valid proof in JSON or JS Object form
+// Valid proof in JS Object form
 let chainpointProofObject = {...} 
 
-cpb.objectToBinary(chainpointProofObject, function (err, proofBinary) {
+chainpointParse.parseObject(chainpointProofObject, function (err, result) {
     if (err) {
       // if an error occurs, the error message will return here
     } else {
-      // proofBinary is a Buffer representing the binary form of a Chainpoint proof
+      // result will be an object summarizing the anchor claims in the proof
     }
 })
 ```
 
-#### `objectToBase64`
+#### `parseBinary`
 
-This function converts a Chainpoint proof in JSON String or Javascript Object form to a Base64 encoded string of the standard binary form. The incoming Object will be validated against
-the formal [Chainpoint Proof JSON Schema](https://github.com/chainpoint/chainpoint-proof-json-schema).
-
-```js
-const cpb = require('chainpoint-binary')
-
-// Valid proof in JSON or JS Object form
-let chainpointProofObject = {...} 
-
-cpb.objectToBase64(chainpointProofObject, function (err, proofBase64) {
-    if (err) {
-      // if an error occurs, the error message will return here
-    } else {
-      // proofBase64 is a Base64 encoded string representing the binary form of a Chainpoint proof
-    }
-})
-```
-
-#### `binaryToObject`
-
-This function converts a Chainpoint binary proof to a Javascript Object. A Hexadecimal string or Base64 string in place of a Buffer is also acceptable as input. The outgoing Object will be validated against the formal [Chainpoint Proof JSON Schema](https://github.com/chainpoint/chainpoint-proof-json-schema) before being returned.
+This function parses a [Chainpoint v3 proof](https://chainpoint.org/) in Chainpoint Binary form, including Buffer, Hex string, or Base64 variants.
 
 ```js
-const cpb = require('chainpoint-binary')
+const chainpointParse = require('chainpoint-parse')
 
 // Valid proof in Buffer, Hex String, or Base64 String form
 let chainpointProofBinaryBuffer = [...] 
 
-cpb.binaryToObject(chainpointProofBinaryBuffer, function (err, proofObject) {
+chainpointParse.parseBinary(chainpointProofBinaryBuffer, function (err, result) {
     if (err) {
       // if an error occurs, the error message will return here
     } else {
-      // proofObject contains the Javascript Object form of a Chainpoint proof
-      // Wrap this with JSON.stringify() for the JSON form as needed.
+      // result will be an object summarizing the anchor claims in the proof
     }
 })
 ```
+
+### Parse Result Object
+
+The Result object contains basic information about the hash referenced in the proof, and the anchor data for that hash. The anchor data contains both the locations and the value the proof claims shoulds exist at those locations. The original branch structure of the proof is preserved, and the anchor data is included in the approriate branch.
+
+The following is an example of a parse result object: 
+```json
+{
+  "hash":"bdf8c9bdf076d6aff0292a1c9448691d2ae283f2ce41b045355e2c8cb8e85ef2",
+  "hash_id":"5cf0a860-0f52-11e7-947d-7fde4e7ca024",
+  "hash_submitted_at":"2017-03-23T11:30:33Z",
+  "branches": [
+    {
+      "label":"root_branch",
+      "anchors": [
+        {
+          "type":"cal",
+          "anchor_id":"1027",
+          "uris": [
+            "http://a.cal.chainpoint.org/1027/root",
+            "http://b.cal.chainpoint.org/1027/root"
+          ],
+          "expected_value":"51296468ea48ddbcc546abb85b935c73058fd8acdb0b953da6aa1ae966581a7a"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The parse result object is similar to the original proof in most ways. The key difference is that all the hash operations have been performed and extracted from the proof. The expected\_values are inserted for each anchor point as a result of these calculations. With these expected\_values determined, one can proceed to validate these anchor claims against the external blockchain sources.
+
 
 ### Browser
 
