@@ -1,0 +1,44 @@
+{
+  "@context": "https://w3id.org/chainpoint/v3",
+  "type": "Chainpoint",
+  "hash": "bdf8c9bdf076d6aff0292a1c9448691d2ae283f2ce41b045355e2c8cb8e85ef2",
+  "hash_id": "5cf0a860-0f52-11e7-947d-7fde4e7ca024",
+  "hash_submitted_at": "2017-03-23T11:30:33Z",
+  "branches": [
+    {
+      "label": "root_branch",
+      "ops": [
+        {
+          "l": "bdf8c9bdf076d6aff0292a1c9448691d2ae283f2ce41b045355e2c8cb8e85ef2"
+        },
+        {
+          "op": "sha-256"
+        },
+        {
+          "l": "cb0dbbedb5ec5363e39be9fc43f56f321e1572cfcf304d26fc67cb6ea2e49faf"
+        },
+        {
+          "op": "sha-256"
+        },
+        {
+          "r": "cb0dbbedb5ec5363e39be9fc43f56f321e1572cfcf304d26fc67cb6ea2e49faf"
+        },
+        {
+          "op": "sha-256"
+        },
+        {
+          "anchors": [
+            {
+              "type": "cal",
+              "anchor_id": "1027",
+              "uris": [
+                "http://a.cal.chainpoint.org/1027/root",
+                "http://b.cal.chainpoint.org/1027/root"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

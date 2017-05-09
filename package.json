@@ -1,0 +1,27 @@
+{
+  "name": "chainpoint-parse",
+  "version": "1.0.0",
+  "description": "Tool for parsing Chainpoint proof anchors and their expected values",
+  "main": "index.js",
+  "author": "Jason Bukowski <jason@tierion.com> (https://tierion.com)",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn bundle && mocha test/*.js",
+    "bundle": "./node_modules/.bin/browserify --standalone chainpointParse index.js -o docs/bundle.js"
+  },
+  "keywords": [
+    "Chainpoint",
+    "parse",
+    "anchors"
+  ],
+  "dependencies": {
+    "chainpoint-binary": "^3.1.1",
+    "chainpoint-proof-json-schema": "^0.0.2",
+    "js-sha3": "^0.5.7"
+  },
+  "devDependencies": {
+    "browserify": "^14.3.0",
+    "mocha": "^3.1.2",
+    "should": "^11.1.1"
+  }
+}
