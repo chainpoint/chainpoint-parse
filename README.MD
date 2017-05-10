@@ -7,7 +7,7 @@
 
 A Javascript library for parsing a [Chainpoint v3 proof](https://chainpoint.org/) and discovering all anchor points in the proof as well as the expected values to be stored at those anchor points.
 
-Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's achor points. This tool will not perform proof verification.
+Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's anchor points. This tool will not perform proof verification.
 
 ## Installation
 
