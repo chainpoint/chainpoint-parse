@@ -7,14 +7,13 @@ const sha3256 = require('js-sha3').sha3_256
 const sha3224 = require('js-sha3').sha3_224
 const chpSchema = require('chainpoint-proof-json-schema')
 const chpBinary = require('chainpoint-binary')
-const rgxs = require('./rgxs')
 
 exports.parseObject = (chainpointObject, callback) => {
   let schemaCheck = chpSchema.validate(chainpointObject)
   if (!schemaCheck.valid) return callback(schemaCheck.errors)
 
-  // initizlize the result object
-  let result = []
+  // initialize the result object
+  let result = {}
   // identify this result set with the basic information on the hash
   result.hash = chainpointObject.hash
   result.hash_id = chainpointObject.hash_id
@@ -43,10 +42,12 @@ function parseBranches (startHash, branchArray) {
     let currentbranchOps = branchArray[b].ops
     for (var o = 0; o < currentbranchOps.length; o++) {
       if (currentbranchOps[o].r) {
-        let concatValue = rgxs.isHex(currentbranchOps[o].r) ? Buffer.from(currentbranchOps[o].r, 'hex') : Buffer.from(currentbranchOps[o].r, 'utf8')
+        // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
+        let concatValue = isHex(currentbranchOps[o].r) ? Buffer.from(currentbranchOps[o].r, 'hex') : Buffer.from(currentbranchOps[o].r, 'utf8')
         currentHashValue = Buffer.concat([currentHashValue, concatValue])
       } else if (currentbranchOps[o].l) {
-        let concatValue = rgxs.isHex(currentbranchOps[o].l) ? Buffer.from(currentbranchOps[o].l, 'hex') : Buffer.from(currentbranchOps[o].l, 'utf8')
+        // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
+        let concatValue = isHex(currentbranchOps[o].l) ? Buffer.from(currentbranchOps[o].l, 'hex') : Buffer.from(currentbranchOps[o].l, 'utf8')
         currentHashValue = Buffer.concat([concatValue, currentHashValue])
       } else if (currentbranchOps[o].op) {
         switch (currentbranchOps[o].op) {
@@ -80,7 +81,7 @@ function parseBranches (startHash, branchArray) {
             break
         }
       } else if (currentbranchOps[o].anchors) {
-        anchors = anchors.concat(parseAnchors(currentHashValue, currentbranchOps[o].anchors.anchors))
+        anchors = anchors.concat(parseAnchors(currentHashValue, currentbranchOps[o].anchors))
       }
     }
 
@@ -88,7 +89,7 @@ function parseBranches (startHash, branchArray) {
       label: branchArray[b].label || undefined,
       anchors: anchors
     }
-    if (branchArray[b].branches) branchObj.branches = parseBranches(currentHashValue.toString('hex'), branchObj.branches)
+    if (branchArray[b].branches) branchObj.branches = parseBranches(currentHashValue.toString('hex'), branchArray[b].branches)
     branches.push(branchObj)
   }
 
@@ -97,7 +98,6 @@ function parseBranches (startHash, branchArray) {
 
 function parseAnchors (currentHashValue, anchorsArray) {
   var anchors = []
-
   for (var x = 0; x < anchorsArray.length; x++) {
     anchors.push(
       {
@@ -111,8 +111,15 @@ function parseAnchors (currentHashValue, anchorsArray) {
   return anchors
 }
 
+function isHex (value) {
+  var hexRegex = /^[0-9A-Fa-f]{2,}$/
+  var result = hexRegex.test(value)
+  if (result) result = !(value.length % 2)
+  return result
+}
+
 }).call(this,require("buffer").Buffer)
-},{"./rgxs":200,"buffer":47,"chainpoint-binary":48,"chainpoint-proof-json-schema":49,"crypto":57,"js-sha3":105}],2:[function(require,module,exports){
+},{"buffer":47,"chainpoint-binary":48,"chainpoint-proof-json-schema":49,"crypto":57,"js-sha3":105}],2:[function(require,module,exports){
 var asn1 = exports;
 
 asn1.bignum = require('bn.js');
@@ -32868,20 +32875,6 @@ function extend() {
     }
 
     return target
-}
-
-},{}],200:[function(require,module,exports){
-module.exports = {
-  isHex: function (value) {
-    var hexRegex = /^[0-9A-Fa-f]{2,}$/
-    var result = hexRegex.test(value)
-    if (result) result = !(value.length % 2)
-    return result
-  },
-  isInt: function (value) {
-    var intRegex = /^(0|[1-9]\d*)$/
-    return intRegex.test(value)
-  }
 }
 
 },{}]},{},[1])(1)

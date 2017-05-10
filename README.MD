@@ -7,6 +7,8 @@
 
 A Javascript library for parsing a [Chainpoint v3 proof](https://chainpoint.org/) and discovering all anchor points in the proof as well as the expected values to be stored at those anchor points.
 
+Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's achor points. This tool will not perform proof verification.
+
 ## Installation
 
 ```
@@ -95,10 +97,10 @@ The parse result object is similar to the original proof in most ways. The key d
 
 ### Browser
 
-Note : You can copy `docs/bundle.js` into your app to include in a script tag, or use the [http://rawgit.com/](http://rawgit.com/) CDN version (make sure the Git commit SHA1 in the URL is current). Rawgit is a free service and makes no guarantees for uptime.
+Note : You can copy `bundle.js` into your app to include in a script tag, or use the [http://rawgit.com/](http://rawgit.com/) CDN version (make sure the Git commit SHA1 in the URL is current). Rawgit is a free service and makes no guarantees for uptime.
 
 ```
-  <script src="https://cdn.rawgit.com/chainpoint/chainpoint-parse/CURRENT-PROJECT-SHA1-HERE/docs/bundle.js"></script>
+  <script src="https://cdn.rawgit.com/chainpoint/chainpoint-parse/CURRENT-PROJECT-SHA1-HERE/bundle.js"></script>
 
 ```
 
@@ -106,6 +108,6 @@ Or install the npm package in a place available to your web pages and set the sc
 
 
 ```
-<script src="./node_modules/chainpoint-parse/docs/bundle.js">
+<script src="./node_modules/chainpoint-parse/bundle.js">
 
 ```

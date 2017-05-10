@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn bundle && mocha test/*.js",
-    "bundle": "./node_modules/.bin/browserify --standalone chainpointParse index.js -o docs/bundle.js"
+    "bundle": "./node_modules/.bin/browserify --standalone chainpointParse index.js -o bundle.js"
   },
   "keywords": [
     "Chainpoint",

@@ -5,13 +5,12 @@ const sha3256 = require('js-sha3').sha3_256
 const sha3224 = require('js-sha3').sha3_224
 const chpSchema = require('chainpoint-proof-json-schema')
 const chpBinary = require('chainpoint-binary')
-const rgxs = require('./rgxs')
 
 exports.parseObject = (chainpointObject, callback) => {
   let schemaCheck = chpSchema.validate(chainpointObject)
   if (!schemaCheck.valid) return callback(schemaCheck.errors)
 
-  // initizlize the result object
+  // initialize the result object
   let result = {}
   // identify this result set with the basic information on the hash
   result.hash = chainpointObject.hash
@@ -42,11 +41,11 @@ function parseBranches (startHash, branchArray) {
     for (var o = 0; o < currentbranchOps.length; o++) {
       if (currentbranchOps[o].r) {
         // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
-        let concatValue = rgxs.isHex(currentbranchOps[o].r) ? Buffer.from(currentbranchOps[o].r, 'hex') : Buffer.from(currentbranchOps[o].r, 'utf8')
+        let concatValue = isHex(currentbranchOps[o].r) ? Buffer.from(currentbranchOps[o].r, 'hex') : Buffer.from(currentbranchOps[o].r, 'utf8')
         currentHashValue = Buffer.concat([currentHashValue, concatValue])
       } else if (currentbranchOps[o].l) {
         // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
-        let concatValue = rgxs.isHex(currentbranchOps[o].l) ? Buffer.from(currentbranchOps[o].l, 'hex') : Buffer.from(currentbranchOps[o].l, 'utf8')
+        let concatValue = isHex(currentbranchOps[o].l) ? Buffer.from(currentbranchOps[o].l, 'hex') : Buffer.from(currentbranchOps[o].l, 'utf8')
         currentHashValue = Buffer.concat([concatValue, currentHashValue])
       } else if (currentbranchOps[o].op) {
         switch (currentbranchOps[o].op) {
@@ -108,4 +107,11 @@ function parseAnchors (currentHashValue, anchorsArray) {
     )
   }
   return anchors
+}
+
+function isHex (value) {
+  var hexRegex = /^[0-9A-Fa-f]{2,}$/
+  var result = hexRegex.test(value)
+  if (result) result = !(value.length % 2)
+  return result
 }
