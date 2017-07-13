@@ -14,7 +14,7 @@ describe('Using a valid basic chainpoint v3 JSON file', function () {
         result.branches.length.should.equal(1)
         result.branches[0].anchors.length.should.equal(1)
         should.not.exist(result.branches[0].branches)
-        result.branches[0].anchors[0].expected_value.should.equal('51296468ea48ddbcc546abb85b935c73058fd8acdb0b953da6aa1ae966581a7a')
+        result.branches[0].anchors[0].expected_value.should.equal('f28d6a3a63d16b0e409ce27d0c6c50d8c206d78b1fd303387e284c964ed397d1')
         done()
       })
     })
