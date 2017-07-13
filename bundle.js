@@ -16,8 +16,10 @@ exports.parseObject = (chainpointObject, callback) => {
   let result = {}
   // identify this result set with the basic information on the hash
   result.hash = chainpointObject.hash
-  result.hash_id = chainpointObject.hash_id
-  result.hash_submitted_at = chainpointObject.hash_submitted_at
+  result.hash_id_node = chainpointObject.hash_id_node
+  result.hash_submitted_node_at = chainpointObject.hash_submitted_node_at
+  result.hash_id_core = chainpointObject.hash_id_core
+  result.hash_submitted_core_at = chainpointObject.hash_submitted_core_at
   // acquire all anchor points and calcaulte expected values for all branches, recursively
   result.branches = parseBranches(chainpointObject.hash, chainpointObject.branches)
   return callback(null, result)
