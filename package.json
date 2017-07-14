@@ -1,6 +1,6 @@
 {
   "name": "chainpoint-parse",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Tool for parsing Chainpoint proof anchors and their expected values",
   "main": "index.js",
   "author": "Jason Bukowski <jason@tierion.com> (https://tierion.com)",
