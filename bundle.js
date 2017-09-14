@@ -38,10 +38,13 @@ exports.parseObject = (chainpointObject, callback) => {
 }
 
 exports.parseBinary = (chainpointBinary, callback) => {
-  chpBinary.binaryToObject(chainpointBinary, (err, proofObject) => {
-    if (err) return callback(err)
-    return this.parseObject(proofObject, callback)
-  })
+  let proofObject
+  try {
+    proofObject = chpBinary.binaryToObjectSync(chainpointBinary)
+  } catch (error) {
+    return callback(error)
+  }
+  return this.parseObject(proofObject, callback)
 }
 
 function parseBranches (startHash, branchArray) {
