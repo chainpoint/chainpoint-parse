@@ -7,7 +7,16 @@
 
 A Javascript library for parsing a [Chainpoint v3 proof](https://chainpoint.org/) and discovering all anchor points in the proof as well as the expected values to be stored at those anchor points.
 
-Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's anchor points. This tool will not perform proof verification.
+Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's anchor points. This tool will not perform the actual proof verification against the Chainpoint
+Calendar or other public blockchains. It simply calculates locally the values
+that you should expect to see in the URI's to validation data provided.
+
+## Demo
+
+Please try the RunKit live code notebook demonstration showing the
+process of submitting hashes and verifying proofs using live code.
+
+https://runkit.com/grempe/create-and-verify-a-chainpoint-proof 
 
 ## Installation
 
