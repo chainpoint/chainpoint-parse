@@ -45,6 +45,28 @@ exports.parseBinary = (chainpointBinary, callback) => {
   return this.parseObject(proofObject, callback)
 }
 
+exports.parseObjectSync = (chainpointObject) => {
+  let schemaCheck = chpSchema.validate(chainpointObject)
+  if (!schemaCheck.valid) throw new Error(schemaCheck.errors)
+
+  // initialize the result object
+  let result = {}
+  // identify this result set with the basic information on the hash
+  result.hash = chainpointObject.hash
+  result.hash_id_node = chainpointObject.hash_id_node
+  result.hash_submitted_node_at = chainpointObject.hash_submitted_node_at
+  result.hash_id_core = chainpointObject.hash_id_core
+  result.hash_submitted_core_at = chainpointObject.hash_submitted_core_at
+  // acquire all anchor points and calcaulte expected values for all branches, recursively
+  result.branches = parseBranches(chainpointObject.hash, chainpointObject.branches)
+  return result
+}
+
+exports.parseBinarySync = (chainpointBinary) => {
+  let proofObject = chpBinary.binaryToObjectSync(chainpointBinary)
+  return this.parseObjectSync(proofObject)
+}
+
 function parseBranches (startHash, branchArray) {
   var branches = []
   var currentHashValue = Buffer.from(startHash, 'hex')
