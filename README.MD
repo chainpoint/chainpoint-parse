@@ -53,6 +53,21 @@ chainpointParse.parseObject(chainpointProofObject, function (err, result) {
 })
 ```
 
+#### `parseObjectSync`
+
+```js
+const chainpointParse = require('chainpoint-parse')
+
+// Valid proof in JS Object form
+let chainpointProofObject = {...} 
+
+try {
+  let result = chainpointParse.parseObjectSync(chainpointProofObject)
+} catch (error) {
+  console.error(`An error has occurred: ${error.message}`)
+}
+```
+
 #### `parseBinary`
 
 This function parses a [Chainpoint v3 proof](https://chainpoint.org/) in Chainpoint Binary form, including Buffer, Hex string, or Base64 variants.
@@ -70,6 +85,21 @@ chainpointParse.parseBinary(chainpointProofBinaryBuffer, function (err, result) 
       // result will be an object summarizing the anchor claims in the proof
     }
 })
+```
+
+#### `parseBinarySync`
+
+```js
+const chainpointParse = require('chainpoint-parse')
+
+// Valid proof in Buffer, Hex String, or Base64 String form
+let chainpointProofBinaryBuffer = [...] 
+
+try {
+  let result = chainpointParse.parseBinarySync(chainpointProofBinaryBuffer)
+} catch (error) {
+  console.error(`An error has occurred: ${error.message}`)
+}
 ```
 
 ### Parse Result Object
