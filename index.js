@@ -47,7 +47,7 @@ exports.parseBinary = (chainpointBinary, callback) => {
 
 function parseBranches (startHash, branchArray) {
   var branches = []
-  var currentHashValue = new Buffer(startHash, 'hex')
+  var currentHashValue = Buffer.from(startHash, 'hex')
 
   // iterate through all branches in the current branch array
   for (var b = 0; b < branchArray.length; b++) {
@@ -79,16 +79,16 @@ function parseBranches (startHash, branchArray) {
             currentHashValue = crypto.createHash('sha512').update(currentHashValue).digest()
             break
           case 'sha3-224':
-            currentHashValue = new Buffer(sha3224.array(currentHashValue))
+            currentHashValue = Buffer.from(sha3224.array(currentHashValue))
             break
           case 'sha3-256':
-            currentHashValue = new Buffer(sha3256.array(currentHashValue))
+            currentHashValue = Buffer.from(sha3256.array(currentHashValue))
             break
           case 'sha3-384':
-            currentHashValue = new Buffer(sha3384.array(currentHashValue))
+            currentHashValue = Buffer.from(sha3384.array(currentHashValue))
             break
           case 'sha3-512':
-            currentHashValue = new Buffer(sha3512.array(currentHashValue))
+            currentHashValue = Buffer.from(sha3512.array(currentHashValue))
             break
           case 'sha-256-x2':
             currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
