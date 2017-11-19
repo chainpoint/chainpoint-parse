@@ -109,23 +109,22 @@ The Result object contains basic information about the hash referenced in the pr
 The following is an example of a parse result object: 
 ```json
 {
-  "hash":"bdf8c9bdf076d6aff0292a1c9448691d2ae283f2ce41b045355e2c8cb8e85ef2",
-  "hash_id_node": "5cf0a860-0f52-11e7-947d-7fde4e7ca024",
-  "hash_submitted_node_at": "2017-03-23T11:30:33Z",
-  "hash_id_core": "e6bf9cc1-67dd-11e7-af4a-e7bc0011940a",
-  "hash_submitted_core_at": "2017-07-13T15:14:02Z",
+  "hash": "9d2a9e92b561440e8d27a21eed114f7018105db00262af7d7087f7dea9986b0c",
+  "hash_id_node": "9ecff531-cce7-11e7-8d12-01b034822bb7",
+  "hash_submitted_node_at": "2017-11-19T05:08:03Z",
+  "hash_id_core": "9f699d20-cce7-11e7-9043-01a1b9a40a38",
+  "hash_submitted_core_at": "2017-11-19T05:08:04Z",
   "branches": [
     {
-      "label":"root_branch",
+      "label": "cal_anchor_branch",
       "anchors": [
         {
-          "type":"cal",
-          "anchor_id":"1027",
+          "type": "cal",
+          "anchor_id": "643162",
           "uris": [
-            "http://a.cal.chainpoint.org/1027/root",
-            "http://b.cal.chainpoint.org/1027/root"
+            "https://c.chainpoint.org/calendar/643162/hash"
           ],
-          "expected_value":"51296468ea48ddbcc546abb85b935c73058fd8acdb0b953da6aa1ae966581a7a"
+          "expected_value": "6335b36006266f2a1b25ff8f754d80b2d2dc8efa49c730eb82c9359feef99eb4"
         }
       ]
     }
@@ -133,7 +132,7 @@ The following is an example of a parse result object:
 }
 ```
 
-The parse result object is similar to the original proof in most ways. The key difference is that all the hash operations have been performed and extracted from the proof. The expected\_values are inserted for each anchor point as a result of these calculations. With these expected\_values determined, one can proceed to validate these anchor claims against the external blockchain sources.
+The parse result object is similar to the original proof in most ways. The key difference is that all the hash operations have been performed and extracted from the proof. The `expected_value` is inserted for each anchor point as a result of these calculations. With these `expected_value` determined, you can proceed to validate these anchor claims against an external blockchain source.
 
 
 ### Browser
