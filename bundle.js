@@ -20,34 +20,7 @@ const sha3224 = require('js-sha3').sha3_224
 const chpSchema = require('chainpoint-proof-json-schema')
 const chpBinary = require('chainpoint-binary')
 
-exports.parseObject = (chainpointObject, callback) => {
-  let schemaCheck = chpSchema.validate(chainpointObject)
-  if (!schemaCheck.valid) return callback(schemaCheck.errors)
-
-  // initialize the result object
-  let result = {}
-  // identify this result set with the basic information on the hash
-  result.hash = chainpointObject.hash
-  result.hash_id_node = chainpointObject.hash_id_node
-  result.hash_submitted_node_at = chainpointObject.hash_submitted_node_at
-  result.hash_id_core = chainpointObject.hash_id_core
-  result.hash_submitted_core_at = chainpointObject.hash_submitted_core_at
-  // acquire all anchor points and calcaulte expected values for all branches, recursively
-  result.branches = parseBranches(chainpointObject.hash, chainpointObject.branches)
-  return callback(null, result)
-}
-
-exports.parseBinary = (chainpointBinary, callback) => {
-  let proofObject
-  try {
-    proofObject = chpBinary.binaryToObjectSync(chainpointBinary)
-  } catch (error) {
-    return callback(error)
-  }
-  return this.parseObject(proofObject, callback)
-}
-
-exports.parseObjectSync = (chainpointObject) => {
+function parseObject (chainpointObject, callback) {
   let schemaCheck = chpSchema.validate(chainpointObject)
   if (!schemaCheck.valid) throw new Error(schemaCheck.errors)
 
@@ -64,9 +37,9 @@ exports.parseObjectSync = (chainpointObject) => {
   return result
 }
 
-exports.parseBinarySync = (chainpointBinary) => {
+function parseBinary (chainpointBinary, callback) {
   let proofObject = chpBinary.binaryToObjectSync(chainpointBinary)
-  return this.parseObjectSync(proofObject)
+  return this.parseObject(proofObject)
 }
 
 function parseBranches (startHash, branchArray) {
@@ -138,12 +111,19 @@ function parseBranches (startHash, branchArray) {
 function parseAnchors (currentHashValue, anchorsArray) {
   var anchors = []
   for (var x = 0; x < anchorsArray.length; x++) {
+    let expectedValue = currentHashValue.toString('hex')
+    // BTC merkle root values is in little endian byte order
+    // All hashes and calculations in a Chainpoint proof are in big endian byte order
+    // If we are determining the expected value for a BTC anchor, the expected value
+    // result byte order must be reversed to match the BTC merkle root byte order
+    // before making any comparisons
+    if (anchorsArray[x].type === 'btc') expectedValue = expectedValue.match(/.{2}/g).reverse().join('')
     anchors.push(
       {
         type: anchorsArray[x].type,
         anchor_id: anchorsArray[x].anchor_id,
         uris: anchorsArray[x].uris || undefined,
-        expected_value: currentHashValue.toString('hex')
+        expected_value: expectedValue
       }
     )
   }
@@ -155,6 +135,11 @@ function isHex (value) {
   var result = hexRegex.test(value)
   if (result) result = !(value.length % 2)
   return result
+}
+
+module.exports = {
+  parseObject: parseObject,
+  parseBinary: parseBinary
 }
 
 }).call(this,require("buffer").Buffer)

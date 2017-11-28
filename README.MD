@@ -11,13 +11,6 @@ Note: This is a low level tool meant for calculating the proof operations and de
 Calendar or other public blockchains. It simply calculates locally the values
 that you should expect to see in the URI's to validation data provided.
 
-## Demo
-
-Please try the RunKit live code notebook demonstration showing the
-process of submitting hashes and verifying proofs using live code.
-
-https://runkit.com/grempe/create-and-verify-a-chainpoint-proof 
-
 ## Installation
 
 ```
@@ -44,25 +37,8 @@ const chainpointParse = require('chainpoint-parse')
 // Valid proof in JS Object form
 let chainpointProofObject = {...} 
 
-chainpointParse.parseObject(chainpointProofObject, function (err, result) {
-    if (err) {
-      // if an error occurs, the error message will return here
-    } else {
-      // result will be an object summarizing the anchor claims in the proof
-    }
-})
-```
-
-#### `parseObjectSync`
-
-```js
-const chainpointParse = require('chainpoint-parse')
-
-// Valid proof in JS Object form
-let chainpointProofObject = {...} 
-
 try {
-  let result = chainpointParse.parseObjectSync(chainpointProofObject)
+  let result = chainpointParse.parseObject(chainpointProofObject)
 } catch (error) {
   console.error(`An error has occurred: ${error.message}`)
 }
@@ -78,25 +54,8 @@ const chainpointParse = require('chainpoint-parse')
 // Valid proof in Buffer, Hex String, or Base64 String form
 let chainpointProofBinaryBuffer = [...] 
 
-chainpointParse.parseBinary(chainpointProofBinaryBuffer, function (err, result) {
-    if (err) {
-      // if an error occurs, the error message will return here
-    } else {
-      // result will be an object summarizing the anchor claims in the proof
-    }
-})
-```
-
-#### `parseBinarySync`
-
-```js
-const chainpointParse = require('chainpoint-parse')
-
-// Valid proof in Buffer, Hex String, or Base64 String form
-let chainpointProofBinaryBuffer = [...] 
-
 try {
-  let result = chainpointParse.parseBinarySync(chainpointProofBinaryBuffer)
+  let result = chainpointParse.parseBinary(chainpointProofBinaryBuffer)
 } catch (error) {
   console.error(`An error has occurred: ${error.message}`)
 }
@@ -133,6 +92,8 @@ The following is an example of a parse result object:
 ```
 
 The parse result object is similar to the original proof in most ways. The key difference is that all the hash operations have been performed and extracted from the proof. The `expected_value` is inserted for each anchor point as a result of these calculations. With these `expected_value` determined, you can proceed to validate these anchor claims against an external blockchain source.
+
+NOTE: The `expected_value` byte order is reversed for all BTC anchor results. This is because all hashes and calculations in a Chainpoint proof are in big endian byte order, but BTC Merkle root values are in little endian byte order in Bitcoin, and as a result, in the Tierion Calendar as well. The value must be reversed before any comparisons are made.
 
 
 ### Browser
