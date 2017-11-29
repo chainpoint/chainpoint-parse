@@ -27,35 +27,18 @@ yarn add chainpoint-parse
 
 ### Node.js
 
-#### `parseObject`
+#### `parse`
 
-This function parses a [Chainpoint v3 proof](https://chainpoint.org/) in Javascript Object form.
+This function parses a [Chainpoint v3 proof](https://chainpoint.org/). chainpointProofObject may be a proof in Javascript Object form, Buffer, Hex string, or Base64 string.
 
 ```js
 const chainpointParse = require('chainpoint-parse')
 
-// Valid proof in JS Object form
+// Valid proof in JS Object, Buffer, Hex String, or Base64 String form
 let chainpointProofObject = {...} 
 
 try {
-  let result = chainpointParse.parseObject(chainpointProofObject)
-} catch (error) {
-  console.error(`An error has occurred: ${error.message}`)
-}
-```
-
-#### `parseBinary`
-
-This function parses a [Chainpoint v3 proof](https://chainpoint.org/) in Chainpoint Binary form, including Buffer, Hex string, or Base64 variants.
-
-```js
-const chainpointParse = require('chainpoint-parse')
-
-// Valid proof in Buffer, Hex String, or Base64 String form
-let chainpointProofBinaryBuffer = [...] 
-
-try {
-  let result = chainpointParse.parseBinary(chainpointProofBinaryBuffer)
+  let result = chainpointParse.parse(chainpointProofObject)
 } catch (error) {
   console.error(`An error has occurred: ${error.message}`)
 }
@@ -105,7 +88,7 @@ Note : You can copy `bundle.js` into your app to include in a script tag, or use
 
 ```
 
-Or install the npm package in a place available to your web pages and set the script `src` tag to something like the following. A set of window global functions `chainpointParse.parseObject()` and `chainpointParse.parseBinary()` will be available and operate the same as the Node.js example above.
+Or install the npm package in a place available to your web pages and set the script `src` tag to something like the following. A window global function `chainpointParse.parse()` will be available and operate the same as the Node.js example above.
 
 
 ```

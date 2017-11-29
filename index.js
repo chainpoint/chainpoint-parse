@@ -18,7 +18,10 @@ const sha3224 = require('js-sha3').sha3_224
 const chpSchema = require('chainpoint-proof-json-schema')
 const chpBinary = require('chainpoint-binary')
 
-function parseObject (chainpointObject, callback) {
+function parse (chainpointObject, callback) {
+  // if the supplied is a Buffer, Hex, or Base64 string, convert to JS object
+  if (typeof chainpointObject === 'string' || Buffer.isBuffer(chainpointObject)) chainpointObject = chpBinary.binaryToObjectSync(chainpointObject)
+
   let schemaCheck = chpSchema.validate(chainpointObject)
   if (!schemaCheck.valid) throw new Error(schemaCheck.errors)
 
@@ -33,11 +36,6 @@ function parseObject (chainpointObject, callback) {
   // acquire all anchor points and calcaulte expected values for all branches, recursively
   result.branches = parseBranches(chainpointObject.hash, chainpointObject.branches)
   return result
-}
-
-function parseBinary (chainpointBinary, callback) {
-  let proofObject = chpBinary.binaryToObjectSync(chainpointBinary)
-  return this.parseObject(proofObject)
 }
 
 function parseBranches (startHash, branchArray) {
@@ -136,6 +134,5 @@ function isHex (value) {
 }
 
 module.exports = {
-  parseObject: parseObject,
-  parseBinary: parseBinary
+  parse: parse
 }
