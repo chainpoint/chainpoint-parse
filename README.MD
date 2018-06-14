@@ -46,27 +46,44 @@ try {
 
 ### Parse Result Object
 
-The Result object contains basic information about the hash referenced in the proof, and the anchor data for that hash. The anchor data contains both the locations and the value the proof claims shoulds exist at those locations. The original branch structure of the proof is preserved, and the anchor data is included in the approriate branch.
+The Result object contains basic information about the hash referenced in the proof, and the anchor data for that hash. The anchor data contains both the locations and the value the proof claims shoulds exist at those locations. The original branch structure of the proof is preserved, and the anchor data is included in the approriate branch. For btc_anchor_branch branches, the OP_RETURN value anchored and BTC transaction id it was included in are also returned.
 
 The following is an example of a parse result object: 
 ```json
-{
-  "hash": "9d2a9e92b561440e8d27a21eed114f7018105db00262af7d7087f7dea9986b0c",
-  "hash_id_node": "9ecff531-cce7-11e7-8d12-01b034822bb7",
-  "hash_submitted_node_at": "2017-11-19T05:08:03Z",
-  "hash_id_core": "9f699d20-cce7-11e7-9043-01a1b9a40a38",
-  "hash_submitted_core_at": "2017-11-19T05:08:04Z",
-  "branches": [
-    {
-      "label": "cal_anchor_branch",
-      "anchors": [
-        {
-          "type": "cal",
-          "anchor_id": "643162",
-          "uris": [
-            "https://c.chainpoint.org/calendar/643162/hash"
+{  
+  "hash":"ffff27222fe366d0b8988b7312c6ba60ee422418d92b62cdcb71fe2991ee7391",
+  "hash_id_node":"66a34bd0-f4e7-11e7-a52b-016a36a9d789",
+  "hash_submitted_node_at":"2018-01-09T02:47:15Z",
+  "hash_id_core":"66bd6380-f4e7-11e7-895d-0176dc2220aa",
+  "hash_submitted_core_at":"2018-01-09T02:47:15Z",
+  "branches":[  
+    {  
+      "label":"cal_anchor_branch",
+      "anchors":[  
+        {  
+          "type":"cal",
+          "anchor_id":"985635",
+          "uris":[  
+            "https://a.chainpoint.org/calendar/985635/hash"
           ],
-          "expected_value": "6335b36006266f2a1b25ff8f754d80b2d2dc8efa49c730eb82c9359feef99eb4"
+          "expected_value":"4690932f928fb7f7ce6e6c49ee95851742231709360be28b7ce2af7b92cfa95b"
+        }
+      ],
+      "branches":[  
+        {  
+          "label":"btc_anchor_branch",
+          "anchors":[  
+            {  
+              "type":"btc",
+              "anchor_id":"503275",
+              "uris":[  
+                "https://a.chainpoint.org/calendar/985814/data"
+              ],
+              "expected_value":"c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9"
+            }
+          ],
+          "opReturnValue":"267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b",
+          "btcTxId":"ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e"
         }
       ]
     }
