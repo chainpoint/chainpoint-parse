@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "Jason Bukowski <jason@tierion.com> (https://tierion.com)",
   "license": "Apache-2.0",
+  "repository": "https://github.com/chainpoint/chainpoint-parse",
   "scripts": {
     "test": "yarn bundle && mocha test/*.js",
     "bundle": "./node_modules/.bin/browserify --standalone chainpointParse index.js -o bundle.js"
