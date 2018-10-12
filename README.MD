@@ -1,7 +1,5 @@
 # Chainpoint Parse
 
-[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-
 [![npm](https://img.shields.io/npm/l/chainpoint-parse.svg)](https://www.npmjs.com/package/chainpoint-parse)
 [![npm](https://img.shields.io/npm/v/chainpoint-parse.svg)](https://www.npmjs.com/package/chainpoint-parse)
 
@@ -98,12 +96,7 @@ NOTE: The `expected_value` byte order is reversed for all BTC anchor results. Th
 
 ### Browser
 
-Note : You can copy `bundle.js` into your app to include in a script tag, or use the [http://rawgit.com/](http://rawgit.com/) CDN version (make sure the Git commit SHA1 in the URL is current). Rawgit is a free service and makes no guarantees for uptime.
-
-```
-  <script src="https://cdn.rawgit.com/chainpoint/chainpoint-parse/CURRENT-PROJECT-SHA1-HERE/bundle.js"></script>
-
-```
+You can copy `bundle.js` into your app to include in a script tag.
 
 Or install the npm package in a place available to your web pages and set the script `src` tag to something like the following. A window global function `chainpointParse.parse()` will be available and operate the same as the Node.js example above.
 
