@@ -228,6 +228,13 @@ chainpoint-proof-json-schema@^1.0.0:
   dependencies:
     is-my-json-valid "^2.16.0"
 
+chainpoint-proof-json-schema@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-1.0.2.tgz#4d066b60f0387f07e093e6ac3ac5df2817f9e197"
+  integrity sha512-WTYvsEClYHQITjzbwhfjZo/xFF3GULQG3tI0q8RlMKhebH2mWdJE2BEBsz8DnYHJcBbxLaQEzbYAETxenqEdrQ==
+  dependencies:
+    is-my-json-valid "^2.16.0"
+
 cipher-base@^1.0.0, cipher-base@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/cipher-base/-/cipher-base-1.0.3.tgz#eeabf194419ce900da3018c207d212f2a6df0a07"
