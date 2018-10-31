@@ -16,7 +16,7 @@
     "anchors"
   ],
   "dependencies": {
-    "chainpoint-binary": "^4.0.0",
+    "chainpoint-binary": "^4.0.2",
     "chainpoint-proof-json-schema": "^1.0.2",
     "js-sha3": "^0.5.7"
   },

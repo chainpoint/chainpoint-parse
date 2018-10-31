@@ -214,19 +214,14 @@ cached-path-relative@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cached-path-relative/-/cached-path-relative-1.0.1.tgz#d09c4b52800aa4c078e2dd81a869aac90d2e54e7"
 
-chainpoint-binary@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-4.0.0.tgz#f5fa3b077df09417161692957c81501a5fbf8a79"
+chainpoint-binary@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-4.0.2.tgz#dd55f18e856552e86650bba95da6c888ee0b835d"
+  integrity sha512-WzZBbzV5yX3i2Dq6+JI6tG5UJ0vM+4dcUhiXcif7kFjz0tbYN2rKLzrLgsk9l2+bw+/rvuZfLVSVDMZzMtfTcQ==
   dependencies:
-    chainpoint-proof-json-schema "^1.0.0"
+    chainpoint-proof-json-schema "^1.0.2"
     msgpack-lite "^0.1.26"
     pako "^1.0.5"
-
-chainpoint-proof-json-schema@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-1.0.0.tgz#39795322e3619724766638fce6de8c8632f3d25a"
-  dependencies:
-    is-my-json-valid "^2.16.0"
 
 chainpoint-proof-json-schema@^1.0.2:
   version "1.0.2"
