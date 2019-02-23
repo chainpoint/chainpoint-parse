@@ -105,6 +105,7 @@ function parseBranches (startHash, branchArray) {
       let btcAnchorInfo = getBtcAnchorInfo(startHash, currentbranchOps)
       branchObj.opReturnValue = btcAnchorInfo.opReturnValue
       branchObj.btcTxId = btcAnchorInfo.btcTxId
+      branchObj.rawTx = btcAnchorInfo.rawTx
     }
 
     branches.push(branchObj)
@@ -141,6 +142,7 @@ function getBtcAnchorInfo (startHash, ops) {
   let currentHashValue = Buffer.from(startHash, 'hex')
   let has256x2 = false
   let isFirst256x2 = false
+  let rawTx = ''
 
   let opResultTable = ops.map((op) => {
     if (op.r) {
@@ -180,6 +182,10 @@ function getBtcAnchorInfo (startHash, ops) {
           currentHashValue = Buffer.from(sha3512.array(currentHashValue))
           break
         case 'sha-256-x2':
+          // if this is the first double sha256, then the currentHashValue is the rawTx
+          // on the public Bitcoin blockchain
+          if (!has256x2)
+            rawTx = currentHashValue
           currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
           currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
           if (!has256x2) {
@@ -199,7 +205,8 @@ function getBtcAnchorInfo (startHash, ops) {
 
   return {
     opReturnValue: opResultTable[opReturnOpIndex].opResult.toString('hex'),
-    btcTxId: opResultTable[btcTxIdOpIndex].opResult.toString('hex').match(/.{2}/g).reverse().join('')
+    btcTxId: opResultTable[btcTxIdOpIndex].opResult.toString('hex').match(/.{2}/g).reverse().join(''),
+    rawTx: rawTx.toString('hex')
   }
 }
 
