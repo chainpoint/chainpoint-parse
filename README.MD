@@ -44,7 +44,7 @@ try {
 
 ### Parse Result Object
 
-The Result object contains basic information about the hash referenced in the proof, and the anchor data for that hash. The anchor data contains both the locations and the value the proof claims shoulds exist at those locations. The original branch structure of the proof is preserved, and the anchor data is included in the approriate branch. For btc_anchor_branch branches, the OP_RETURN value anchored and BTC transaction id it was included in are also returned.
+The Result object contains basic information about the hash referenced in the proof, and the anchor data for that hash. The anchor data contains both the locations and the value the proof claims shoulds exist at those locations. The original branch structure of the proof is preserved, and the anchor data is included in the approriate branch. For btc_anchor_branch branches, the OP_RETURN value anchored, the BTC transaction id it was included in, and the BTC raw transaction body are also returned.
 
 The following is an example of a parse result object: 
 ```json
