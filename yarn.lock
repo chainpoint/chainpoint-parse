@@ -428,21 +428,14 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-chainpoint-binary@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-4.0.2.tgz#dd55f18e856552e86650bba95da6c888ee0b835d"
-  integrity sha512-WzZBbzV5yX3i2Dq6+JI6tG5UJ0vM+4dcUhiXcif7kFjz0tbYN2rKLzrLgsk9l2+bw+/rvuZfLVSVDMZzMtfTcQ==
+chainpoint-binary@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-4.1.0.tgz#0b923d6ba9828324947a2a07c11a0b8991b9d327"
+  integrity sha512-KsO9pyx/+TII8IKcG2QuE71u64hF6WoAEIDxYBj6RLfGeuLmIx9y5d7SgeJUXBP+XQLW/tfw6Kteo6aVYk0Lkg==
   dependencies:
-    chainpoint-proof-json-schema "^1.0.2"
+    chainpoint-proof-json-schema "^1.1.0"
     msgpack-lite "^0.1.26"
-    pako "^1.0.5"
-
-chainpoint-proof-json-schema@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-1.0.2.tgz#4d066b60f0387f07e093e6ac3ac5df2817f9e197"
-  integrity sha512-WTYvsEClYHQITjzbwhfjZo/xFF3GULQG3tI0q8RlMKhebH2mWdJE2BEBsz8DnYHJcBbxLaQEzbYAETxenqEdrQ==
-  dependencies:
-    is-my-json-valid "^2.16.0"
+    pako "^1.0.10"
 
 chainpoint-proof-json-schema@^1.1.0:
   version "1.1.0"
@@ -1540,15 +1533,6 @@ is-my-ip-valid@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-my-ip-valid/-/is-my-ip-valid-1.0.0.tgz#7b351b8e8edd4d3995d4d066680e664d94696824"
   integrity sha512-gmh/eWXROncUzRnIa1Ubrt5b8ep/MGSnfAUI3aRp+sqTCs1tv1Isl8d8F6JmkN3dXKc3ehZMrtiPN9eL03NuaQ==
 
-is-my-json-valid@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.0.tgz#f079dd9bfdae65ee2038aae8acbc86ab109e3693"
-  dependencies:
-    generate-function "^2.0.0"
-    generate-object-property "^1.1.0"
-    jsonpointer "^4.0.0"
-    xtend "^4.0.0"
-
 is-my-json-valid@^2.20.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.20.0.tgz#1345a6fca3e8daefc10d0fa77067f54cedafd59a"
@@ -2228,9 +2212,10 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pako@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.5.tgz#d2205dfe5b9da8af797e7c163db4d1f84e4600bc"
+pako@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
+  integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
 
 pako@~0.2.0:
   version "0.2.9"
