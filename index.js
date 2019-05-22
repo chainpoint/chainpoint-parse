@@ -1,14 +1,14 @@
 /* Copyright 2017 Tierion
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*     http://www.apache.org/licenses/LICENSE-2.0
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 const crypto = require('crypto')
 const sha3512 = require('js-sha3').sha3_512
@@ -18,9 +18,10 @@ const sha3224 = require('js-sha3').sha3_224
 const chpSchema = require('chainpoint-proof-json-schema')
 const chpBinary = require('chainpoint-binary')
 
-function parse (chainpointObject, callback) {
+function parse(chainpointObject) {
   // if the supplied is a Buffer, Hex, or Base64 string, convert to JS object
-  if (typeof chainpointObject === 'string' || Buffer.isBuffer(chainpointObject)) chainpointObject = chpBinary.binaryToObjectSync(chainpointObject)
+  if (typeof chainpointObject === 'string' || Buffer.isBuffer(chainpointObject))
+    chainpointObject = chpBinary.binaryToObjectSync(chainpointObject)
 
   let schemaCheck = chpSchema.validate(chainpointObject)
   if (!schemaCheck.valid) throw new Error(schemaCheck.errors)
@@ -38,7 +39,7 @@ function parse (chainpointObject, callback) {
   return result
 }
 
-function parseBranches (startHash, branchArray) {
+function parseBranches(startHash, branchArray) {
   var branches = []
   var currentHashValue = Buffer.from(startHash, 'hex')
 
@@ -51,25 +52,41 @@ function parseBranches (startHash, branchArray) {
     for (var o = 0; o < currentbranchOps.length; o++) {
       if (currentbranchOps[o].r) {
         // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
-        let concatValue = isHex(currentbranchOps[o].r) ? Buffer.from(currentbranchOps[o].r, 'hex') : Buffer.from(currentbranchOps[o].r, 'utf8')
+        let concatValue = isHex(currentbranchOps[o].r)
+          ? Buffer.from(currentbranchOps[o].r, 'hex')
+          : Buffer.from(currentbranchOps[o].r, 'utf8')
         currentHashValue = Buffer.concat([currentHashValue, concatValue])
       } else if (currentbranchOps[o].l) {
         // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
-        let concatValue = isHex(currentbranchOps[o].l) ? Buffer.from(currentbranchOps[o].l, 'hex') : Buffer.from(currentbranchOps[o].l, 'utf8')
+        let concatValue = isHex(currentbranchOps[o].l)
+          ? Buffer.from(currentbranchOps[o].l, 'hex')
+          : Buffer.from(currentbranchOps[o].l, 'utf8')
         currentHashValue = Buffer.concat([concatValue, currentHashValue])
       } else if (currentbranchOps[o].op) {
         switch (currentbranchOps[o].op) {
           case 'sha-224':
-            currentHashValue = crypto.createHash('sha224').update(currentHashValue).digest()
+            currentHashValue = crypto
+              .createHash('sha224')
+              .update(currentHashValue)
+              .digest()
             break
           case 'sha-256':
-            currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
+            currentHashValue = crypto
+              .createHash('sha256')
+              .update(currentHashValue)
+              .digest()
             break
           case 'sha-384':
-            currentHashValue = crypto.createHash('sha384').update(currentHashValue).digest()
+            currentHashValue = crypto
+              .createHash('sha384')
+              .update(currentHashValue)
+              .digest()
             break
           case 'sha-512':
-            currentHashValue = crypto.createHash('sha512').update(currentHashValue).digest()
+            currentHashValue = crypto
+              .createHash('sha512')
+              .update(currentHashValue)
+              .digest()
             break
           case 'sha3-224':
             currentHashValue = Buffer.from(sha3224.array(currentHashValue))
@@ -84,8 +101,14 @@ function parseBranches (startHash, branchArray) {
             currentHashValue = Buffer.from(sha3512.array(currentHashValue))
             break
           case 'sha-256-x2':
-            currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
-            currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
+            currentHashValue = crypto
+              .createHash('sha256')
+              .update(currentHashValue)
+              .digest()
+            currentHashValue = crypto
+              .createHash('sha256')
+              .update(currentHashValue)
+              .digest()
             break
         }
       } else if (currentbranchOps[o].anchors) {
@@ -97,7 +120,8 @@ function parseBranches (startHash, branchArray) {
       label: branchArray[b].label || undefined,
       anchors: anchors
     }
-    if (branchArray[b].branches) branchObj.branches = parseBranches(currentHashValue.toString('hex'), branchArray[b].branches)
+    if (branchArray[b].branches)
+      branchObj.branches = parseBranches(currentHashValue.toString('hex'), branchArray[b].branches)
 
     // if this branch is a standard Chaipoint BTC anchor branch,
     // output the OP_RETURN value and the BTC transaction id
@@ -114,7 +138,7 @@ function parseBranches (startHash, branchArray) {
   return branches
 }
 
-function parseAnchors (currentHashValue, anchorsArray) {
+function parseAnchors(currentHashValue, anchorsArray) {
   var anchors = []
   for (var x = 0; x < anchorsArray.length; x++) {
     let expectedValue = currentHashValue.toString('hex')
@@ -123,20 +147,22 @@ function parseAnchors (currentHashValue, anchorsArray) {
     // If we are determining the expected value for a BTC anchor, the expected value
     // result byte order must be reversed to match the BTC merkle root byte order
     // before making any comparisons
-    if (anchorsArray[x].type === 'btc') expectedValue = expectedValue.match(/.{2}/g).reverse().join('')
-    anchors.push(
-      {
-        type: anchorsArray[x].type,
-        anchor_id: anchorsArray[x].anchor_id,
-        uris: anchorsArray[x].uris || undefined,
-        expected_value: expectedValue
-      }
-    )
+    if (anchorsArray[x].type === 'btc')
+      expectedValue = expectedValue
+        .match(/.{2}/g)
+        .reverse()
+        .join('')
+    anchors.push({
+      type: anchorsArray[x].type,
+      anchor_id: anchorsArray[x].anchor_id,
+      uris: anchorsArray[x].uris || undefined,
+      expected_value: expectedValue
+    })
   }
   return anchors
 }
 
-function getBtcAnchorInfo (startHash, ops) {
+function getBtcAnchorInfo(startHash, ops) {
   // This calculation depends on the branch using the standard format
   // for btc_anchor_branch type branches created by Chainpoint services
   let currentHashValue = Buffer.from(startHash, 'hex')
@@ -144,7 +170,7 @@ function getBtcAnchorInfo (startHash, ops) {
   let isFirst256x2 = false
   let rawTx = ''
 
-  let opResultTable = ops.map((op) => {
+  let opResultTable = ops.map(op => {
     if (op.r) {
       // hex data gets treated as hex, otherwise it is converted to bytes assuming a ut8 encoded string
       let concatValue = isHex(op.r) ? Buffer.from(op.r, 'hex') : Buffer.from(op.r, 'utf8')
@@ -158,16 +184,28 @@ function getBtcAnchorInfo (startHash, ops) {
     } else if (op.op) {
       switch (op.op) {
         case 'sha-224':
-          currentHashValue = crypto.createHash('sha224').update(currentHashValue).digest()
+          currentHashValue = crypto
+            .createHash('sha224')
+            .update(currentHashValue)
+            .digest()
           break
         case 'sha-256':
-          currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
+          currentHashValue = crypto
+            .createHash('sha256')
+            .update(currentHashValue)
+            .digest()
           break
         case 'sha-384':
-          currentHashValue = crypto.createHash('sha384').update(currentHashValue).digest()
+          currentHashValue = crypto
+            .createHash('sha384')
+            .update(currentHashValue)
+            .digest()
           break
         case 'sha-512':
-          currentHashValue = crypto.createHash('sha512').update(currentHashValue).digest()
+          currentHashValue = crypto
+            .createHash('sha512')
+            .update(currentHashValue)
+            .digest()
           break
         case 'sha3-224':
           currentHashValue = Buffer.from(sha3224.array(currentHashValue))
@@ -184,10 +222,15 @@ function getBtcAnchorInfo (startHash, ops) {
         case 'sha-256-x2':
           // if this is the first double sha256, then the currentHashValue is the rawTx
           // on the public Bitcoin blockchain
-          if (!has256x2)
-            rawTx = currentHashValue
-          currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
-          currentHashValue = crypto.createHash('sha256').update(currentHashValue).digest()
+          if (!has256x2) rawTx = currentHashValue
+          currentHashValue = crypto
+            .createHash('sha256')
+            .update(currentHashValue)
+            .digest()
+          currentHashValue = crypto
+            .createHash('sha256')
+            .update(currentHashValue)
+            .digest()
           if (!has256x2) {
             isFirst256x2 = true
             has256x2 = true
@@ -200,17 +243,23 @@ function getBtcAnchorInfo (startHash, ops) {
     }
   })
 
-  let btcTxIdOpIndex = opResultTable.findIndex((result) => { return result.isFirst256x2 })
+  let btcTxIdOpIndex = opResultTable.findIndex(result => {
+    return result.isFirst256x2
+  })
   let opReturnOpIndex = btcTxIdOpIndex - 3
 
   return {
     opReturnValue: opResultTable[opReturnOpIndex].opResult.toString('hex'),
-    btcTxId: opResultTable[btcTxIdOpIndex].opResult.toString('hex').match(/.{2}/g).reverse().join(''),
+    btcTxId: opResultTable[btcTxIdOpIndex].opResult
+      .toString('hex')
+      .match(/.{2}/g)
+      .reverse()
+      .join(''),
     rawTx: rawTx.toString('hex')
   }
 }
 
-function isHex (value) {
+function isHex(value) {
   var hexRegex = /^[0-9A-Fa-f]{2,}$/
   var result = hexRegex.test(value)
   if (result) result = !(value.length % 2)
