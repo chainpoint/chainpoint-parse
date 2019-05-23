@@ -147,7 +147,7 @@ function parseAnchors(currentHashValue, anchorsArray) {
     // If we are determining the expected value for a BTC anchor, the expected value
     // result byte order must be reversed to match the BTC merkle root byte order
     // before making any comparisons
-    if (anchorsArray[x].type === 'btc')
+    if (['btc', 'tbtc'].includes(anchorsArray[x].type))
       expectedValue = expectedValue
         .match(/.{2}/g)
         .reverse()
