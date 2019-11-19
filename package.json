@@ -35,7 +35,7 @@
   ],
   "dependencies": {
     "chainpoint-binary": "^4.1.0",
-    "chainpoint-proof-json-schema": "^1.1.0",
+    "chainpoint-proof-json-schema": "^1.2.0",
     "js-sha3": "^0.8.0"
   },
   "devDependencies": {
