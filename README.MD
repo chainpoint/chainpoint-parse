@@ -1,6 +1,6 @@
-# Important
+# Important:
 
-If you're looking to validate proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 1.1.0. The latest update is for the unreleased V4 proof schema.
+If you're looking to parse proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 1.1.0. The latest update is for the unreleased V4 proof schema.
 
 ## TODO: Update samples in test/data
 
