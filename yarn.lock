@@ -428,26 +428,19 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-chainpoint-binary@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-4.1.0.tgz#0b923d6ba9828324947a2a07c11a0b8991b9d327"
-  integrity sha512-KsO9pyx/+TII8IKcG2QuE71u64hF6WoAEIDxYBj6RLfGeuLmIx9y5d7SgeJUXBP+XQLW/tfw6Kteo6aVYk0Lkg==
+chainpoint-binary@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/chainpoint-binary/-/chainpoint-binary-5.0.0.tgz#7cd9a6b7ca318836cdf00c1f16d674b2d736a3a7"
+  integrity sha512-LrwqbREUKRqllEEIcZ23QpsfREqXjSAVys9CIIf4rX7f7Hz2/HRjxEEQZZ+hEcW4JufuzvZIXSuRE8tXXFz32w==
   dependencies:
-    chainpoint-proof-json-schema "^1.1.0"
+    chainpoint-proof-json-schema "^2.0.1"
     msgpack-lite "^0.1.26"
     pako "^1.0.10"
 
-chainpoint-proof-json-schema@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-1.1.0.tgz#66c1f19812785c9327b6a82a66b10e8608085fa2"
-  integrity sha512-xxLZ4lqpwW+oZHBHiFpNFY9oSd2z9fdrgRxXxy4kC0T2b/dfeYRY96qL+DN/EVl17qGVhHNd7OJRsGAdTU6eCA==
-  dependencies:
-    is-my-json-valid "^2.20.0"
-
-chainpoint-proof-json-schema@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-2.0.0.tgz#dcb524ec31f3e2339e2873e941b4f1c6dd3be4e7"
-  integrity sha512-p6dkjRld2TjpFiR6Jql+8kYZwD6sQWuYWl+TM6PAU91qxdLHtgisjYJ/3w0zloBXDmPbQpL44VadAhPXDCGNOQ==
+chainpoint-proof-json-schema@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/chainpoint-proof-json-schema/-/chainpoint-proof-json-schema-2.0.1.tgz#64d83bcf2bf23d5c5194b65e2cc4d955b6ecae0f"
+  integrity sha512-mf4YGkq9XGQYuEBmyhYuX7HaF2au/zmYDfxbMV5FM3vcV8jUuUJAOQ3JGSNVvRAKE1M8kv7v+JkxUxqctdwnnQ==
   dependencies:
     is-my-json-valid "^2.20.0"
 
