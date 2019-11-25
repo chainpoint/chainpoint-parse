@@ -1,3 +1,9 @@
+# Important
+
+If you're looking to validate proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 1.1.0. The latest update is for the unreleased V4 proof schema.
+
+## TODO: Update samples in test/data
+
 # Chainpoint Parse
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
