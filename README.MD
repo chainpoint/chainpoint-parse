@@ -1,10 +1,16 @@
+# Important:
+
+If you're looking to parse proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 3.3.1. The latest update (4.0.0) is for the unreleased V4 proof schema.
+
+## TODO: Update samples in test/data
+
 # Chainpoint Parse
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![npm](https://img.shields.io/npm/l/chainpoint-parse.svg)](https://www.npmjs.com/package/chainpoint-parse)
 [![npm](https://img.shields.io/npm/v/chainpoint-parse.svg)](https://www.npmjs.com/package/chainpoint-parse)
 
-A Javascript library for parsing a [Chainpoint v3 proof](https://chainpoint.org/) and discovering all anchor points in the proof as well as the expected values to be stored at those anchor points.
+A Javascript library for parsing a [Chainpoint v4 proof](https://chainpoint.org/) and discovering all anchor points in the proof as well as the expected values to be stored at those anchor points.
 
 Note: This is a low level tool meant for calculating the proof operations and determining the values claimed to be stored at the proof's anchor points. This tool will not perform the actual proof verification against the Chainpoint
 Calendar or other public blockchains. It simply calculates locally the values
@@ -28,7 +34,7 @@ yarn add chainpoint-parse
 
 #### `parse`
 
-This function parses a [Chainpoint v3 proof](https://chainpoint.org/). chainpointProofObject may be a proof in Javascript Object form, Buffer, Hex string, or Base64 string.
+This function parses a [Chainpoint v4 proof](https://chainpoint.org/). chainpointProofObject may be a proof in Javascript Object form, Buffer, Hex string, or Base64 string.
 
 ```js
 const chainpointParse = require('chainpoint-parse')
@@ -51,10 +57,8 @@ The following is an example of a parse result object:
 ```json
 {  
   "hash":"ffff27222fe366d0b8988b7312c6ba60ee422418d92b62cdcb71fe2991ee7391",
-  "hash_id_node":"66a34bd0-f4e7-11e7-a52b-016a36a9d789",
-  "hash_submitted_node_at":"2018-01-09T02:47:15Z",
-  "hash_id_core":"66bd6380-f4e7-11e7-895d-0176dc2220aa",
-  "hash_submitted_core_at":"2018-01-09T02:47:15Z",
+  "proof_id":"66a34bd0-f4e7-11e7-a52b-016a36a9d789",
+  "hash_received":"2018-01-09T02:47:15Z",
   "branches":[  
     {  
       "label":"cal_anchor_branch",
