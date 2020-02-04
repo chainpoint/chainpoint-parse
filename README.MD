@@ -2,8 +2,6 @@
 
 If you're looking to parse proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 3.3.1. The latest update (4.0.0) is for the unreleased V4 proof schema.
 
-## TODO: Update samples in test/data
-
 # Chainpoint Parse
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -55,39 +53,45 @@ The Result object contains basic information about the hash referenced in the pr
 
 The following is an example of a parse result object: 
 ```json
-{  
-  "hash":"ffff27222fe366d0b8988b7312c6ba60ee422418d92b62cdcb71fe2991ee7391",
-  "proof_id":"66a34bd0-f4e7-11e7-a52b-016a36a9d789",
-  "hash_received":"2018-01-09T02:47:15Z",
-  "branches":[  
-    {  
-      "label":"cal_anchor_branch",
-      "anchors":[  
-        {  
-          "type":"cal",
-          "anchor_id":"985635",
-          "uris":[  
-            "https://a.chainpoint.org/calendar/985635/hash"
-          ],
-          "expected_value":"4690932f928fb7f7ce6e6c49ee95851742231709360be28b7ce2af7b92cfa95b"
-        }
-      ],
-      "branches":[  
-        {  
-          "label":"btc_anchor_branch",
-          "anchors":[  
-            {  
-              "type":"btc",
-              "anchor_id":"503275",
-              "uris":[  
-                "https://a.chainpoint.org/calendar/985814/data"
+{
+  "hash": "ffff27222fe366d0b8988b7312c6ba60ee422418d92b62cdcb71fe2991ee7391",
+  "proof_id": "5e0433d0-46da-11ea-a79e-017f19452571",
+  "hash_received": "2020-02-03T23:10:28Z",
+  "branches": [
+    {
+      "label": "aggregator",
+      "anchors": [],
+      "branches": [
+        {
+          "label": "cal_anchor_branch",
+          "anchors": [
+            {
+              "type": "tcal",
+              "anchor_id": "7159fe850b6ddb51ff50dc4d44b1aa363128e52ad49f21fd68b1cd0c77afa64d",
+              "uris": [
+                "http://3.135.54.225/calendar/7159fe850b6ddb51ff50dc4d44b1aa363128e52ad49f21fd68b1cd0c77afa64d/data"
               ],
-              "expected_value":"c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9"
+              "expected_value": "f472ed9ff3018dfd499d7b2cd8f1fc7905c4b7204bac2bd7050b153391987ca6"
             }
           ],
-          "opReturnValue":"267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b",
-          "btcTxId":"ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e",
-          "rawTx":"01000000013d9bfb8c553b3a7c9c030ea9b0f47c7e4c457e47a1ad2d9c751c8eb0e02fee70010000006a47304402201eac07288c3881f354564bb9da0d8267174cdc9e8c42ca82c2129a0416c806220220104e9932a89259472c84be7722f77324efa43a65ca79dd5bb8b6aab0ac9788000121032695ca0d3c0f7f8082a6ef66e7127e48d4eb99bef86be99432b897c485962fa8ffffffff020000000000000000226a20267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1bca694202000000001976a9149f1f4038857beedd34cc5ba9f26ac7a20c04d51988ac00000000"
+          "branches": [
+            {
+              "label": "btc_anchor_branch",
+              "anchors": [
+                {
+                  "type": "tbtc",
+                  "anchor_id": "1664848",
+                  "uris": [
+                    "http://3.135.54.225/calendar/1eedc4483110bc656cf21e39a8b77041798ef49b8b0a5cd266f3060d81087fb7/data"
+                  ],
+                  "expected_value": "d0249268f4929fe044bcd476952a5f4496e031571c5d48c41c0e3295fd9c8b86"
+                }
+              ],
+              "opReturnValue": "f712f74a8a52de37fa1fc71a659585f2fe8536c70dd17f65848f275de3ca2900",
+              "btcTxId": "51560437696be945d222ee32a05da3ad57457436567d59c3e7f7066382e0ab91",
+              "rawTx": "0100000001161056cfe33bb565f50cff84e30b5d14720d4a7172ab246be96f3d28ba22b8810000000000ffffffff020000000000000000226a20f712f74a8a52de37fa1fc71a659585f2fe8536c70dd17f65848f275de3ca290008e0ee0500000000160014a2ae5c0fec0e93b33d25909f42b24877376d25cc00000000"
+            }
+          ]
         }
       ]
     }
