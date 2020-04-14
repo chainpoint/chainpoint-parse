@@ -11,24 +11,25 @@ describe('Using a valid chainpoint v4 JSON file, parse as Object', function() {
     should.exist(jsonSample)
     let result = chpParse.parse(JSON.parse(jsonSample))
     result.branches.length.should.equal(1)
-    result.branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches.length.should.equal(1)
+    result.branches[0].anchors.length.should.equal(0)
     result.branches[0].branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches[0].anchors[0].expected_value.should.equal(
-      'c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9'
+    result.branches[0].branches[0].branches.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors[0].expected_value.should.equal(
+      'e8886527b676a2d835e8fd8417b3884c0158ff7ec38647012fe15f5ae448d825'
     )
-    should.not.exist(result.branches[0].branches[0].branches)
-    result.branches[0].branches[0].should.have.property('opReturnValue')
-    result.branches[0].branches[0].opReturnValue.should.equal(
-      '267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b'
+    should.not.exist(result.branches[0].branches[0].branches[0].branches)
+    result.branches[0].branches[0].branches[0].should.have.property('opReturnValue')
+    result.branches[0].branches[0].branches[0].opReturnValue.should.equal(
+      '334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01'
     )
-    result.branches[0].branches[0].should.have.property('btcTxId')
-    result.branches[0].branches[0].btcTxId.should.equal(
-      'ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e'
+    result.branches[0].branches[0].branches[0].should.have.property('btcTxId')
+    result.branches[0].branches[0].branches[0].btcTxId.should.equal(
+      '96bbb4b7c00b3e91810633bdccbca2c3e81da9b57ffde642853732e540b6f40c'
     )
-    result.branches[0].branches[0].should.have.property('rawTx')
-    result.branches[0].branches[0].rawTx.should.equal(
-      '01000000013d9bfb8c553b3a7c9c030ea9b0f47c7e4c457e47a1ad2d9c751c8eb0e02fee70010000006a47304402201eac07288c3881f354564bb9da0d8267174cdc9e8c42ca82c2129a0416c806220220104e9932a89259472c84be7722f77324efa43a65ca79dd5bb8b6aab0ac9788000121032695ca0d3c0f7f8082a6ef66e7127e48d4eb99bef86be99432b897c485962fa8ffffffff020000000000000000226a20267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1bca694202000000001976a9149f1f4038857beedd34cc5ba9f26ac7a20c04d51988ac00000000'
+    result.branches[0].branches[0].branches[0].should.have.property('rawTx')
+    result.branches[0].branches[0].branches[0].rawTx.should.equal(
+      '010000000160ddcd2a591a36e1c8f350c499d86bd80d38fc26d44d98536fcd5cd039d07aed0100000000ffffffff020000000000000000226a20334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01aef6320000000000160014ea7348e6c85578e63dd08904f09893fb77e4309100000000'
     )
     done()
   })
@@ -41,24 +42,25 @@ describe('Using a valid chainpoint v4 JSON file, parse as Buffer', function() {
     let bufferProof = chpBinary.objectToBinarySync(JSON.parse(jsonSample))
     let result = chpParse.parse(bufferProof)
     result.branches.length.should.equal(1)
-    result.branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches.length.should.equal(1)
+    result.branches[0].anchors.length.should.equal(0)
     result.branches[0].branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches[0].anchors[0].expected_value.should.equal(
-      'c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9'
+    result.branches[0].branches[0].branches.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors[0].expected_value.should.equal(
+      'e8886527b676a2d835e8fd8417b3884c0158ff7ec38647012fe15f5ae448d825'
     )
-    should.not.exist(result.branches[0].branches[0].branches)
-    result.branches[0].branches[0].should.have.property('opReturnValue')
-    result.branches[0].branches[0].opReturnValue.should.equal(
-      '267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b'
+    should.not.exist(result.branches[0].branches[0].branches[0].branches)
+    result.branches[0].branches[0].branches[0].should.have.property('opReturnValue')
+    result.branches[0].branches[0].branches[0].opReturnValue.should.equal(
+      '334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01'
     )
-    result.branches[0].branches[0].should.have.property('btcTxId')
-    result.branches[0].branches[0].btcTxId.should.equal(
-      'ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e'
+    result.branches[0].branches[0].branches[0].should.have.property('btcTxId')
+    result.branches[0].branches[0].branches[0].btcTxId.should.equal(
+      '96bbb4b7c00b3e91810633bdccbca2c3e81da9b57ffde642853732e540b6f40c'
     )
-    result.branches[0].branches[0].should.have.property('rawTx')
-    result.branches[0].branches[0].rawTx.should.equal(
-      '01000000013d9bfb8c553b3a7c9c030ea9b0f47c7e4c457e47a1ad2d9c751c8eb0e02fee70010000006a47304402201eac07288c3881f354564bb9da0d8267174cdc9e8c42ca82c2129a0416c806220220104e9932a89259472c84be7722f77324efa43a65ca79dd5bb8b6aab0ac9788000121032695ca0d3c0f7f8082a6ef66e7127e48d4eb99bef86be99432b897c485962fa8ffffffff020000000000000000226a20267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1bca694202000000001976a9149f1f4038857beedd34cc5ba9f26ac7a20c04d51988ac00000000'
+    result.branches[0].branches[0].branches[0].should.have.property('rawTx')
+    result.branches[0].branches[0].branches[0].rawTx.should.equal(
+      '010000000160ddcd2a591a36e1c8f350c499d86bd80d38fc26d44d98536fcd5cd039d07aed0100000000ffffffff020000000000000000226a20334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01aef6320000000000160014ea7348e6c85578e63dd08904f09893fb77e4309100000000'
     )
     done()
   })
@@ -71,24 +73,25 @@ describe('Using a valid chainpoint v4 JSON file, parse as Hex string', function(
     let bufferProof = chpBinary.objectToBinarySync(JSON.parse(jsonSample))
     let result = chpParse.parse(bufferProof.toString('hex'))
     result.branches.length.should.equal(1)
-    result.branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches.length.should.equal(1)
+    result.branches[0].anchors.length.should.equal(0)
     result.branches[0].branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches[0].anchors[0].expected_value.should.equal(
-      'c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9'
+    result.branches[0].branches[0].branches.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors[0].expected_value.should.equal(
+      'e8886527b676a2d835e8fd8417b3884c0158ff7ec38647012fe15f5ae448d825'
     )
-    should.not.exist(result.branches[0].branches[0].branches)
-    result.branches[0].branches[0].should.have.property('opReturnValue')
-    result.branches[0].branches[0].opReturnValue.should.equal(
-      '267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b'
+    should.not.exist(result.branches[0].branches[0].branches[0].branches)
+    result.branches[0].branches[0].branches[0].should.have.property('opReturnValue')
+    result.branches[0].branches[0].branches[0].opReturnValue.should.equal(
+      '334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01'
     )
-    result.branches[0].branches[0].should.have.property('btcTxId')
-    result.branches[0].branches[0].btcTxId.should.equal(
-      'ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e'
+    result.branches[0].branches[0].branches[0].should.have.property('btcTxId')
+    result.branches[0].branches[0].branches[0].btcTxId.should.equal(
+      '96bbb4b7c00b3e91810633bdccbca2c3e81da9b57ffde642853732e540b6f40c'
     )
-    result.branches[0].branches[0].should.have.property('rawTx')
-    result.branches[0].branches[0].rawTx.should.equal(
-      '01000000013d9bfb8c553b3a7c9c030ea9b0f47c7e4c457e47a1ad2d9c751c8eb0e02fee70010000006a47304402201eac07288c3881f354564bb9da0d8267174cdc9e8c42ca82c2129a0416c806220220104e9932a89259472c84be7722f77324efa43a65ca79dd5bb8b6aab0ac9788000121032695ca0d3c0f7f8082a6ef66e7127e48d4eb99bef86be99432b897c485962fa8ffffffff020000000000000000226a20267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1bca694202000000001976a9149f1f4038857beedd34cc5ba9f26ac7a20c04d51988ac00000000'
+    result.branches[0].branches[0].branches[0].should.have.property('rawTx')
+    result.branches[0].branches[0].branches[0].rawTx.should.equal(
+      '010000000160ddcd2a591a36e1c8f350c499d86bd80d38fc26d44d98536fcd5cd039d07aed0100000000ffffffff020000000000000000226a20334a18d706faf55e3f46ad4a8bae706a89c41f493ca5e2331c5a05c62d039a01aef6320000000000160014ea7348e6c85578e63dd08904f09893fb77e4309100000000'
     )
     done()
   })
@@ -99,25 +102,13 @@ describe('Using a valid chainpoint v4 testnet JSON file, parse as Object', funct
     let jsonSample = fs.readFileSync('./test/data/chainpoint-proof-v4-t.chp.json', 'utf-8')
     should.exist(jsonSample)
     let result = chpParse.parse(JSON.parse(jsonSample))
+    console.log(JSON.stringify(result, null, 2))
     result.branches.length.should.equal(1)
-    result.branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches.length.should.equal(1)
+    result.branches[0].anchors.length.should.equal(0)
+    should.not.exist(result.branches[0].branches[0].branches)
     result.branches[0].branches[0].anchors.length.should.equal(1)
     result.branches[0].branches[0].anchors[0].expected_value.should.equal(
-      'c617f5faca34474bea7020d75c39cb8427a32145f9646586ecb9184002131ad9'
-    )
-    should.not.exist(result.branches[0].branches[0].branches)
-    result.branches[0].branches[0].should.have.property('opReturnValue')
-    result.branches[0].branches[0].opReturnValue.should.equal(
-      '267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1b'
-    )
-    result.branches[0].branches[0].should.have.property('btcTxId')
-    result.branches[0].branches[0].btcTxId.should.equal(
-      'ba3c8c3e547ed73471c28a69659373f3f0a3b726aab31cdecd14513d9c581f1e'
-    )
-    result.branches[0].branches[0].should.have.property('rawTx')
-    result.branches[0].branches[0].rawTx.should.equal(
-      '01000000013d9bfb8c553b3a7c9c030ea9b0f47c7e4c457e47a1ad2d9c751c8eb0e02fee70010000006a47304402201eac07288c3881f354564bb9da0d8267174cdc9e8c42ca82c2129a0416c806220220104e9932a89259472c84be7722f77324efa43a65ca79dd5bb8b6aab0ac9788000121032695ca0d3c0f7f8082a6ef66e7127e48d4eb99bef86be99432b897c485962fa8ffffffff020000000000000000226a20267335262e21e7adb4220068b4b90b7ff066324935d7f61ceab2a64080b06b1bca694202000000001976a9149f1f4038857beedd34cc5ba9f26ac7a20c04d51988ac00000000'
+      '58df97135d4ab912e484837398acbcbeb13236dee2cec8d9dea314c2b8f43cde'
     )
     done()
   })
