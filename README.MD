@@ -1,6 +1,6 @@
 # Important:
 
-If you're looking to parse proofs schemas from the existing Chainpoint V3 Network (chainpoint-services), use version 3.3.1. The latest update (4.0.0) is for the unreleased V4 proof schema.
+This version is for the Chainpoint v4 proof schema. If you're looking to parse proofs from the older Chainpoint V3 Network (chainpoint-services), use version 3.3.1. 
 
 # Chainpoint Parse
 
