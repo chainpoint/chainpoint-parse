@@ -1,28 +1,88 @@
 {
   "@context": "https://w3id.org/chainpoint/v4",
   "type": "Chainpoint",
-  "hash": "164987e17f947ad8faf234111370401c040c218d4b9fbd6bb3b9bfd16ff07adb",
-  "proof_id": "69726d30-7e58-11ea-b4bb-01bbdefe0b03",
-  "hash_received": "2020-04-14T14:01:17Z",
+  "hash": "1d2a9e92b561440e8d27a21eed114f7018105db00262af7d7087f7dea9986b0a",
+  "proof_id": "36c37dc0-7e7b-11ea-b4bb-0158bffc6e1f",
+  "hash_received": "2020-04-14T18:10:25Z",
   "branches": [
     {
       "label": "aggregator",
-      "ops": [],
+      "ops": [
+        {
+          "l": "1957db7fe23e4be1740ddeb941ddda7ae0a6b782e536a9e00b5aa82db1e84547"
+        },
+        {
+          "op": "sha-256"
+        },
+        {
+          "r": "c3043921e0ed833695c42c5b2ed7fcc186f46e55a8e5ec2677d587aac859bcd7"
+        },
+        {
+          "op": "sha-256"
+        }
+      ],
       "branches": [
         {
           "label": "cal_anchor_branch",
           "ops": [
             {
-              "l": "nistv2:1586872620:9d7fb848414a417d652779aa8f829f449fd1e2bba9fca6853e4f86dcb7047e1454d4dcca043eddeccae7284c4472817eae08a1574f61c7c61e329c6da92b29fc"
+              "l": "nistv2:1586888040:2b45dda92c9401f1bf9e350feaca982c6040fc4453905cfaaa8a5699bea7831d63e8ed17ad14f5497aabdce06c2447444d022a454f676515a437e4e3ab684461"
             },
-            { "op": "sha-256" },
+            {
+              "op": "sha-256"
+            },
             {
               "anchors": [
                 {
                   "type": "tcal",
-                  "anchor_id": "284be883d6c9dd20143b18716ea5c0cec5fe939a88a63fab80fbeeaff4c0e676",
+                  "anchor_id": "082c9f524d406cdbbe79f55b0a0ac1d1f6a104f87b14bdae4bda1bbb4a796e3a",
                   "uris": [
-                    "http://3.135.54.225/calendar/284be883d6c9dd20143b18716ea5c0cec5fe939a88a63fab80fbeeaff4c0e676/data"
+                    "http://52.14.49.31/calendar/082c9f524d406cdbbe79f55b0a0ac1d1f6a104f87b14bdae4bda1bbb4a796e3a/data"
+                  ]
+                }
+              ]
+            }
+          ],
+          "branches": [
+            {
+              "label": "btc_anchor_branch",
+              "ops": [
+                {
+                  "l": "740333cf3fa9291dc5a9489015095cbd16ecfe40239747ba7b9fe06c3d901ab2"
+                },
+                {
+                  "op": "sha-256"
+                },
+                {
+                  "l": "010000000189addd588d8c44513de1aef196e9e6057746851e112c732356f999438be084470000000000ffffffff020000000000000000226a20"
+                },
+                {
+                  "r": "0a132900000000001600144325c03453c822703070f36c4aa3a32678f9cf4e00000000"
+                },
+                {
+                  "op": "sha-256-x2"
+                },
+                {
+                  "r": "ab9b8efba74f79a722088f8323fd43b844712fe8f166cbc218ed36ed1dabbea6"
+                },
+                {
+                  "op": "sha-256-x2"
+                },
+                {
+                  "l": "5cc59aa2a35d0db83eab8fc1d1d83f76bfd8519ff3a988e7164391df712ea8a2"
+                },
+                {
+                  "op": "sha-256-x2"
+                },
+                {
+                  "anchors": [
+                    {
+                      "type": "tbtc",
+                      "anchor_id": "1716279",
+                      "uris": [
+                        "http://52.14.49.31/calendar/cba9d750bdf4d77e611ac1ae2217ff5c36fc20dd81e486d5257006332d9b397a/data"
+                      ]
+                    }
                   ]
                 }
               ]

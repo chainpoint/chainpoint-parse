@@ -102,13 +102,26 @@ describe('Using a valid chainpoint v4 testnet JSON file, parse as Object', funct
     let jsonSample = fs.readFileSync('./test/data/chainpoint-proof-v4-t.chp.json', 'utf-8')
     should.exist(jsonSample)
     let result = chpParse.parse(JSON.parse(jsonSample))
-    console.log(JSON.stringify(result, null, 2))
     result.branches.length.should.equal(1)
     result.branches[0].anchors.length.should.equal(0)
-    should.not.exist(result.branches[0].branches[0].branches)
-    result.branches[0].branches[0].anchors.length.should.equal(1)
-    result.branches[0].branches[0].anchors[0].expected_value.should.equal(
-      '58df97135d4ab912e484837398acbcbeb13236dee2cec8d9dea314c2b8f43cde'
+    result.branches[0].branches.length.should.equal(1)
+    result.branches[0].branches[0].branches.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors.length.should.equal(1)
+    result.branches[0].branches[0].branches[0].anchors[0].expected_value.should.equal(
+      '107abc9f53d1f00c79ecf58e4446a0d2711b4543bb07ea0176431b175fe07889'
+    )
+    should.not.exist(result.branches[0].branches[0].branches[0].branches)
+    result.branches[0].branches[0].branches[0].should.have.property('opReturnValue')
+    result.branches[0].branches[0].branches[0].opReturnValue.should.equal(
+      '6678c4184c7f99bc493df567cc261925cf00ddd5b179bd078e03f6cbbeaa4313'
+    )
+    result.branches[0].branches[0].branches[0].should.have.property('btcTxId')
+    result.branches[0].branches[0].branches[0].btcTxId.should.equal(
+      '9f0eea5a2cf55429e82b841ccf6492f4507c0c57d5bf1242af4495b802bf699c'
+    )
+    result.branches[0].branches[0].branches[0].should.have.property('rawTx')
+    result.branches[0].branches[0].branches[0].rawTx.should.equal(
+      '010000000189addd588d8c44513de1aef196e9e6057746851e112c732356f999438be084470000000000ffffffff020000000000000000226a206678c4184c7f99bc493df567cc261925cf00ddd5b179bd078e03f6cbbeaa43130a132900000000001600144325c03453c822703070f36c4aa3a32678f9cf4e00000000'
     )
     done()
   })
