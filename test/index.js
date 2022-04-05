@@ -184,9 +184,6 @@ describe('Using a valid chainpoint v5 JSON file, parse as Hex string', function(
 })
 
 describe('Using a valid chainpoint v4 testnet JSON file, parse as Object', function() {
-  let jsonSample = fs.readFileSync('./test/data/chainpoint-proof-v4-t.chp.json', 'utf-8')
-  let result = chpParse.parse(JSON.parse(jsonSample))
-  console.log(JSON.stringify(result))
   it('should return expected results', function(done) {
     let jsonSample = fs.readFileSync('./test/data/chainpoint-proof-v4-t.chp.json', 'utf-8')
     should.exist(jsonSample)
