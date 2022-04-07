@@ -1,5 +1,5 @@
 {
-  "@context": "https://w3id.org/chainpoint/v4",
+  "@context": "https://w3id.org/chainpoint/v5",
   "branches": [
     {
       "branches": [
